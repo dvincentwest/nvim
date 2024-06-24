@@ -47,6 +47,12 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim"     -- easy commenting
   use "kylechui/nvim-surround"    -- tpope style surrounds
 
+  -- autoformatting
+  use "stevearc/conform.nvim"
+
+  -- colorschemes
+  use "catppuccin/nvim"
+
   -- completions
   use "hrsh7th/nvim-cmp" -- the main completion plugin
   use "hrsh7th/cmp-buffer"
@@ -76,7 +82,6 @@ return packer.startup(function(use)
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
 
-  use "catppuccin/nvim"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

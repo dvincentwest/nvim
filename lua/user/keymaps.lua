@@ -14,5 +14,8 @@ vim.g.maplocalleader = " "
 vim.api.nvim_set_keymap("v", "p", '"_dP', opts)
 
 -- Telescope
-vim.api.nvim_set_keymap("n", "<leader>f", "<cmd> Telescope find_files<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>pf", "<cmd> Telescope find_files<CR>", opts)
+
+-- autoformat
+vim.api.nvim_set_keymap("n", "<leader>fmt", '<cmd>lua require("conform").format({lsp_fallback = true})<CR>', opts)
 
