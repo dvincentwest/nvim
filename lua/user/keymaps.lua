@@ -13,3 +13,6 @@ vim.g.maplocalleader = " "
 -- clipboard keeps the same text after pasting
 vim.api.nvim_set_keymap("v", "p", '"_dP', opts)
 
+-- Telescope
+vim.api.nvim_set_keymap("n", "<leader>f", "<cmd> Telescope find_files<CR>", opts)
+
