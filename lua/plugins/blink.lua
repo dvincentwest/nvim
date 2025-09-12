@@ -44,7 +44,8 @@ return {
       default = {
           -- TODO seems to be broken, need to figure out whats going on
           -- 'lazydev',
-          'lsp', 'path', 'snippets', 'buffer'},
+          -- 'lsp', 'path', 'snippets', 'buffer'},
+          'lsp', 'path', 'snippets'},
     },
 
     -- providers = {
@@ -65,4 +66,3 @@ return {
   },
   opts_extend = { "sources.default" }
 }
-
