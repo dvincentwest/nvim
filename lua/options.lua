@@ -77,4 +77,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.keymap.set("n", "<leader>bd", ":bn<bar>bd #<CR>", { desc = "close a buffer but preserve window layout" })
+
+-- autoload .nvim.lua files
 vim.o.exrc = true
