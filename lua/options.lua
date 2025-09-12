@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd(
         callback = function()
             -- these remove the behavior that comments are automatically continued on
             -- the next line when inserting a newline either from insert or normal modes
-            vim.opt.formatoptions:remove({ "t", "o", "r" })
+            vim.opt.formatoptions:remove({ "t", "o", "r", "c" })
             vim.bo.indentexpr = "nvim_treesitter#indent()"
         end,
     }
@@ -75,3 +75,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = trim_whitespace_and_trailing_newlines,
 })
+
+vim.keymap.set("n", "<leader>bd", ":bn<bar>bd #<CR>", { desc = "close a buffer but preserve window layout" })
+vim.o.exrc = true
