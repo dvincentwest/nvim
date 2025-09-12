@@ -38,6 +38,30 @@ local on_attach = function(client, bufnr)
 end
 
 
+local function register_pyrefly()
+    local configs = require("lspconfig.configs")
+    if not configs.pyrefly then
+        configs.pyrefly = {
+            default_config = {
+                cmd = { "pyrefly", "lsp" },
+                filetypes = { "python" },
+                root_dir = require("lspconfig.util").root_pattern(
+                    'pyrefly.toml',
+                    'pyproject.toml',
+                    'setup.py',
+                    'setup.cfg',
+                    'requirements.txt',
+                    'Pipfile',
+                    '.git'
+                ),
+                single_file_support = true,
+                on_exit = function(code, _, _)
+                    vim.notify('Pyrefly LSP exited with code: ' .. code, vim.log.levels.INFO)
+                end,
+            },
+        }
+    end
+end
 
 
 return {
@@ -52,17 +76,23 @@ return {
         lspconfig.lua_ls.setup({ on_attach = on_attach })
 
         -- Python
-        -- lspconfig.pyrefly.setup({}) -- not working for some reason
-        lspconfig.pyright.setup({
-            on_attach = on_attach,
-            settings = {
-                python = {
-                    analysis = {
-                        autoImportCompletions = false,
-                    },
-                },
-            },
-        })
+
+        -- PYREFLY, Testing instead of pyright, commented out below
+        register_pyrefly() -- Add pyrefly as a custom server
+        lspconfig.pyrefly.setup({ on_attach = on_attach })
+
+        -- Disable while testing Pyrefly
+        -- lspconfig.pyright.setup({
+        --     on_attach = on_attach,
+        --     settings = {
+        --         python = {
+        --             analysis = {
+        --                 autoImportCompletions = false,
+        --             },
+        --         },
+        --     },
+        -- })
+
         lspconfig.ruff.setup({})
     end
 }
