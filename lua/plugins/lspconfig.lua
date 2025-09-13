@@ -78,20 +78,20 @@ return {
         -- Python
 
         -- PYREFLY, Testing instead of pyright, commented out below
-        register_pyrefly() -- Add pyrefly as a custom server
-        lspconfig.pyrefly.setup({ on_attach = on_attach })
+        -- register_pyrefly() -- Add pyrefly as a custom server
+        -- lspconfig.pyrefly.setup({ on_attach = on_attach })
 
         -- Disable while testing Pyrefly
-        -- lspconfig.pyright.setup({
-        --     on_attach = on_attach,
-        --     settings = {
-        --         python = {
-        --             analysis = {
-        --                 autoImportCompletions = false,
-        --             },
-        --         },
-        --     },
-        -- })
+        lspconfig.pyright.setup({
+            on_attach = on_attach,
+            settings = {
+                python = {
+                    analysis = {
+                        autoImportCompletions = false,
+                    },
+                },
+            },
+        })
 
         lspconfig.ruff.setup({})
     end
