@@ -80,3 +80,6 @@ vim.keymap.set("n", "<leader>bd", ":bn<bar>bd #<CR>", { desc = "close a buffer b
 
 -- autoload .nvim.lua files
 vim.o.exrc = true
+
+-- make the background whatever Ghostty's background is set to
+-- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
