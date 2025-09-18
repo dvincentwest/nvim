@@ -83,3 +83,6 @@ vim.o.exrc = true
 
 -- make the background whatever Ghostty's background is set to
 -- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+
+-- enable syntax highlighting within the language blocks
+vim.g.markdown_fenced_languages = {"html", "python", "bash=sh", "cpp", "c"}
