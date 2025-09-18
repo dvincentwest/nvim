@@ -5,7 +5,16 @@ return {
         lazy = false,    -- load at startup
         priority = 1000, -- make sure it loads before other start plugins
         config = function()
-            vim.cmd.colorscheme("kanagawa")
+            -- vim.cmd.colorscheme("kanagawa")
+        end,
+    },
+    {
+        "EdenEast/nightfox.nvim",
+        name = "nightfox",
+        lazy = false,    -- load at startup
+        priority = 1000, -- make sure it loads before other start plugins
+        config = function()
+            vim.cmd.colorscheme("terafox")
         end,
     },
     {
@@ -17,14 +26,6 @@ return {
             -- vim.cmd.colorscheme("nord")
         end,
     },
-    -- lua/plugins/rose-pine.lua
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            -- vim.cmd("colorscheme rose-pine")
-        end
-    },
     {
         "catppuccin/nvim",
         name = "catppuccin",
@@ -33,4 +34,12 @@ return {
             -- vim.cmd("colorscheme catppuccin-frappe")
         end
     },
+    -- {  -- a perhaps misguided attempt at my own colorscheme
+    --     dir = "/Users/vince/Coding/nvim/vincefont/vnord.nvim",
+    --     config = function()
+    --         require("vnord").setup()
+    --         vim.cmd.colorscheme("vnord")
+    --     end,
+    -- }
+
 }
