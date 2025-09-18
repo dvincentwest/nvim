@@ -38,42 +38,42 @@ local on_attach = function(client, bufnr)
 end
 
 
-local function register_pyrefly()
-    local configs = require("lspconfig.configs")
-    if not configs.pyrefly then
-        configs.pyrefly = {
-            default_config = {
-                cmd = { "pyrefly", "lsp" },
-                filetypes = { "python" },
-                root_dir = require("lspconfig.util").root_pattern(
-                    'pyrefly.toml',
-                    'pyproject.toml',
-                    'setup.py',
-                    'setup.cfg',
-                    'requirements.txt',
-                    'Pipfile',
-                    '.git'
-                ),
-                single_file_support = true,
-                on_exit = function(code, _, _)
-                    vim.notify('Pyrefly LSP exited with code: ' .. code, vim.log.levels.INFO)
-                end,
-            },
-        }
-    end
-end
-
+-- local function register_pyrefly()
+--     local configs = require("lspconfig.configs")
+--     if not configs.pyrefly then
+--         configs.pyrefly = {
+--             default_config = {
+--                 cmd = { "pyrefly", "lsp" },
+--                 filetypes = { "python" },
+--                 root_dir = require("lspconfig.util").root_pattern(
+--                     'pyrefly.toml',
+--                     'pyproject.toml',
+--                     'setup.py',
+--                     'setup.cfg',
+--                     'requirements.txt',
+--                     'Pipfile',
+--                     '.git'
+--                 ),
+--                 single_file_support = true,
+--                 on_exit = function(code, _, _)
+--                     vim.notify('Pyrefly LSP exited with code: ' .. code, vim.log.levels.INFO)
+--                 end,
+--             },
+--         }
+--     end
+-- end
 
 return {
     "neovim/nvim-lspconfig",
     config = function()
-        local lspconfig = require("lspconfig")
 
         -- C++
-        lspconfig.clangd.setup({ on_attach = on_attach })
+        vim.lsp.config("clangd", { on_attach = on_attach })
+        vim.lsp.enable("clangd")
 
         -- Lua
-        lspconfig.lua_ls.setup({ on_attach = on_attach })
+        vim.lsp.config("lua_ls", { on_attach = on_attach })
+        vim.lsp.enable("lua_ls")
 
         -- Python
 
@@ -82,7 +82,7 @@ return {
         -- lspconfig.pyrefly.setup({ on_attach = on_attach })
 
         -- Disable while testing Pyrefly
-        lspconfig.pyright.setup({
+        vim.lsp.config("pyright", {
             on_attach = on_attach,
             settings = {
                 python = {
@@ -92,7 +92,9 @@ return {
                 },
             },
         })
+        vim.lsp.enable("pyright")
 
-        lspconfig.ruff.setup({})
+        vim.lsp.config("ruff", {})
+        vim.lsp.enable("ruff")
     end
 }
