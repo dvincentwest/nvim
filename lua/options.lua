@@ -1,4 +1,6 @@
-vim.opt.clipboard = "unnamedplus"
+-- the following yanks everything always to the clipboard
+-- vim.opt.clipboard = "unnamedplus"
+
 vim.opt.virtualedit = "block"
 vim.opt.termguicolors = true
 
