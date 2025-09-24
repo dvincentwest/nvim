@@ -78,7 +78,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = trim_whitespace_and_trailing_newlines,
 })
 
+-- some useful keymaps
 vim.keymap.set("n", "<leader>bd", ":bn<bar>bd #<CR>", { desc = "close a buffer but preserve window layout" })
+vim.api.nvim_set_keymap("t", "<leader><Esc>", "<C-\\><C-n>", { noremap = true })
 
 -- autoload .nvim.lua files
 vim.o.exrc = true
