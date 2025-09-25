@@ -64,23 +64,24 @@ vim.keymap.set("n", "<leader>bD", V_ToggleDiagnostics, { desc = "Toggle diagnost
 
 -- Trim trailing whitespace and make exactly one newline
 local function trim_whitespace_and_trailing_newlines()
-  local save_cursor = vim.fn.getpos(".")
-  -- Remove all trailing whitespace
-  vim.cmd([[%s/\s\+$//e]])
-  -- Remove all trailing newlines
-  vim.cmd([[%s/\n\+\%$//e]])
-  -- VIM will automatically add a trailing newline when saving the file
+    local save_cursor = vim.fn.getpos(".")
+    -- Remove all trailing whitespace
+    vim.cmd([[%s/\s\+$//e]])
+    -- Remove all trailing newlines
+    vim.cmd([[%s/\n\+\%$//e]])
+    -- VIM will automatically add a trailing newline when saving the file
 end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("trim_whitespace", { clear = true }),
-  pattern = "*",
-  callback = trim_whitespace_and_trailing_newlines,
+    group = vim.api.nvim_create_augroup("trim_whitespace", { clear = true }),
+    pattern = "*",
+    callback = trim_whitespace_and_trailing_newlines,
 })
 
 -- some useful keymaps
 vim.keymap.set("n", "<leader>bd", ":bn<bar>bd #<CR>", { desc = "close a buffer but preserve window layout" })
-vim.api.nvim_set_keymap("t", "<leader><Esc>", "<C-\\><C-n>", { noremap = true })
+vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true })
+vim.keymap.set("n", "<leader>Q", ":qa!<CR>", { desc = "force close neovim" })
 
 -- autoload .nvim.lua files
 vim.o.exrc = true
@@ -89,4 +90,4 @@ vim.o.exrc = true
 -- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
 
 -- enable syntax highlighting within the language blocks
-vim.g.markdown_fenced_languages = {"html", "python", "bash=sh", "cpp", "c"}
+vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "cpp", "c" }
