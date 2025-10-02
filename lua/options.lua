@@ -14,7 +14,6 @@ vim.opt.shiftwidth = 4
 vim.opt.textwidth = 88
 vim.opt.colorcolumn = { 88, 100 }
 vim.opt.cursorline = true
-vim.opt.scrolloff = 10
 
 -- disable tree sitter indenting and just use something local context aware
 vim.opt.autoindent = true

@@ -33,7 +33,7 @@ return {
         config = function()
             local plugin = require "no-clown-fiesta"
             plugin.setup({
-                -- transparent = true,
+                transparent = true,
                 -- theme = "dark",
                 theme = "dim",
                 -- theme = "light",
@@ -55,12 +55,4 @@ return {
             -- vim.cmd("colorscheme catppuccin-frappe")
         end
     },
-    -- {  -- a perhaps misguided attempt at my own colorscheme
-    --     dir = "/Users/vince/Coding/nvim/vincefont/vnord.nvim",
-    --     config = function()
-    --         require("vnord").setup()
-    --         vim.cmd.colorscheme("vnord")
-    --     end,
-    -- }
-
 }
