@@ -33,7 +33,7 @@ return {
         config = function()
             local plugin = require "no-clown-fiesta"
             plugin.setup({
-                transparent = true,
+                -- transparent = true,
                 -- theme = "dark",
                 theme = "dim",
                 -- theme = "light",
@@ -45,20 +45,20 @@ return {
             })
             local ret =  plugin.load()
 
-            -- ghostty: 272B33
-            local light = "#323741"
-            -- local dark = "#21242A"
-            local dark = "#21242A"
-            local tabunderline = false
-
-            vim.api.nvim_set_hl(0, "CursorLine", { bg = dark })
-            vim.api.nvim_set_hl(0, "ColorColumn", { bg = light })
-            vim.api.nvim_set_hl(0, "Search", { bg = dark, underline = true })
+            -- -- native: 262626
+            -- -- ghostty: 272B33
+            -- local light = "#323741"
+            local dark = "#262626"
+            -- local tabunderline = false
+            --
+            -- vim.api.nvim_set_hl(0, "CursorLine", { bg = dark })
+            -- vim.api.nvim_set_hl(0, "ColorColumn", { bg = light })
+            -- vim.api.nvim_set_hl(0, "Search", { bg = dark, underline = true })
             vim.api.nvim_set_hl(0, "StatusLine", { bg = dark })
-            vim.api.nvim_set_hl(0, "Visual", { bg = dark })
-            vim.api.nvim_set_hl(0, "TabLine", { bg = dark, underline = tabunderline })
-            vim.api.nvim_set_hl(0, "TabLineSel", { bg = light, underline = tabunderline })
-            vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE", underline = tabunderline })
+            -- vim.api.nvim_set_hl(0, "Visual", { bg = dark })
+            -- vim.api.nvim_set_hl(0, "TabLine", { bg = dark, underline = tabunderline })
+            -- vim.api.nvim_set_hl(0, "TabLineSel", { bg = light, underline = tabunderline })
+            -- vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE", underline = tabunderline })
 
             return ret
         end,
