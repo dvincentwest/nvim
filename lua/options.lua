@@ -81,7 +81,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- some useful keymaps
-vim.keymap.set("n", "<leader>bd", ":bn<bar>bd #<CR>", { desc = "close a buffer but preserve window layout" })
+local function close_buffer_preserve_layout()
+    local current_buf = vim.api.nvim_get_current_buf()
+    local alt_buf = vim.fn.bufnr('#')
+
+    -- If there's a valid alternate buffer, switch to it
+    if alt_buf ~= -1 and alt_buf ~= current_buf and vim.api.nvim_buf_is_valid(alt_buf) then
+        vim.cmd('buffer ' .. alt_buf)
+    else
+        -- Otherwise fall back to previous buffer in list
+        vim.cmd('bprevious')
+    end
+
+    -- Delete the original buffer by its number
+    vim.cmd('bdelete ' .. current_buf)
+end
+
+vim.keymap.set("n", "<leader>bd", close_buffer_preserve_layout, { desc = "close a buffer but preserve window layout" })
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true })
 vim.keymap.set("n", "<leader>Q", ":qa!<CR>", { desc = "force close neovim" })
 
