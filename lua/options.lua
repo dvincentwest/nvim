@@ -83,18 +83,35 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- some useful keymaps
 local function close_buffer_preserve_layout()
     local current_buf = vim.api.nvim_get_current_buf()
+    local current_win = vim.api.nvim_get_current_win()
     local alt_buf = vim.fn.bufnr('#')
 
-    -- If there's a valid alternate buffer, switch to it
-    if alt_buf ~= -1 and alt_buf ~= current_buf and vim.api.nvim_buf_is_valid(alt_buf) then
-        vim.cmd('buffer ' .. alt_buf)
+    -- Get all listed buffers
+    local buffers = vim.tbl_filter(function(buf)
+        return vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted and buf ~= current_buf
+    end, vim.api.nvim_list_bufs())
+
+    local target_buf = nil
+
+    -- Prefer alternate buffer if it's valid and not current
+    if alt_buf ~= -1 and alt_buf ~= current_buf and vim.api.nvim_buf_is_valid(alt_buf) and vim.bo[alt_buf].buflisted then
+        target_buf = alt_buf
+    elseif #buffers > 0 then
+        -- Otherwise use the first available buffer from the list
+        target_buf = buffers[1]
     else
-        -- Otherwise fall back to previous buffer in list
-        vim.cmd('bprevious')
+        -- No other buffers exist, create new empty buffer
+        target_buf = vim.api.nvim_create_buf(true, false)
     end
 
-    -- Delete the original buffer by its number
-    vim.cmd('bdelete ' .. current_buf)
+    -- Explicitly set the target buffer in the current window to preserve layout
+    vim.api.nvim_win_set_buf(current_win, target_buf)
+
+    -- Set alternate to prevent toggling on next call
+    vim.fn.setreg('#', target_buf)
+
+    -- Delete the original buffer (force delete to avoid prompts)
+    vim.api.nvim_buf_delete(current_buf, { force = false })
 end
 
 vim.keymap.set("n", "<leader>bd", close_buffer_preserve_layout, { desc = "close a buffer but preserve window layout" })
