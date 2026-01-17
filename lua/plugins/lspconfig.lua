@@ -31,10 +31,10 @@ local on_attach = function(client, bufnr)
     -- keymap("n", "]d", vim.diagnostic.goto_next, opts)
     -- keymap("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
-    -- Formatting
-    keymap("n", "<leader>cf", function()
-        vim.lsp.buf.format { async = true }
-    end, opts)
+    -- Formatting - Disabled in favor of conform.nvim
+    -- keymap("n", "<leader>cf", function()
+    --     vim.lsp.buf.format { async = true }
+    -- end, opts)
 end
 
 
@@ -78,22 +78,23 @@ return {
         -- Python
 
         -- PYREFLY, Testing instead of pyright, commented out below
-        register_pyrefly() -- Add pyrefly as a custom server
-        vim.lsp.config("pyrefly", { on_attach = on_attach })
-        vim.lsp.enable("pyrefly")
+        -- register_pyrefly() -- Add pyrefly as a custom server
+        -- vim.lsp.config("pyrefly", { on_attach = on_attach })
+        -- vim.lsp.enable("pyrefly")
 
         -- Disable while testing Pyrefly
-        -- vim.lsp.config("pyright", {
-        --     on_attach = on_attach,
-        --     settings = {
-        --         python = {
-        --             analysis = {
-        --                 autoImportCompletions = false,
-        --             },
-        --         },
-        --     },
-        -- })
-        -- vim.lsp.enable("pyright")
+        vim.lsp.config("pyright", {
+            on_attach = on_attach,
+            settings = {
+                python = {
+                    analysis = {
+                        autoImportCompletions = false,
+                        typeCheckingMode = "off",
+                    },
+                },
+            },
+        })
+        vim.lsp.enable("pyright")
 
         vim.lsp.config("ruff", {})
         vim.lsp.enable("ruff")
