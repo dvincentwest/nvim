@@ -85,25 +85,27 @@ return {
 		vim.lsp.enable("lua_ls")
 
 		-- Python
+		vim.lsp.config("ty", { on_attach = on_attach })
+		vim.lsp.enable("ty")
 
 		-- PYREFLY, Testing instead of pyright, commented out below
 		-- register_pyrefly() -- Add pyrefly as a custom server
 		-- vim.lsp.config("pyrefly", { on_attach = on_attach })
 		-- vim.lsp.enable("pyrefly")
 
-		-- Disable while testing Pyrefly
-		vim.lsp.config("pyright", {
-			on_attach = on_attach,
-			settings = {
-				python = {
-					analysis = {
-						autoImportCompletions = false,
-						typeCheckingMode = "off",
-					},
-				},
-			},
-		})
-		vim.lsp.enable("pyright")
+		-- Pyright (disabled in favor of ty)
+		-- vim.lsp.config("pyright", {
+		-- 	on_attach = on_attach,
+		-- 	settings = {
+		-- 		python = {
+		-- 			analysis = {
+		-- 				autoImportCompletions = false,
+		-- 				typeCheckingMode = "off",
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
+		-- vim.lsp.enable("pyright")
 
 		vim.lsp.config("ruff", {})
 		vim.lsp.enable("ruff")
