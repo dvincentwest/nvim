@@ -5,9 +5,9 @@ return {
 
         conform.setup({
             formatters_by_ft = {
-                lua = { "stylua" },
                 -- Conform will run multiple formatters sequentially
-                python = { "ruff" },
+                lua = { "stylua" },
+                python = { "ruff_format" },
                 cpp = { "clang-format" },
             },
         })
