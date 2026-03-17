@@ -127,16 +127,20 @@ vim.keymap.set("n", "<leader>Q", ":qa!<CR>", { desc = "force close neovim" })
 vim.o.exrc = true
 
 -- make the background whatever terminal's background is set to
-local function apply_terminal_bg()
-	local transparent_groups =
-		{ "Normal", "NormalFloat", "NormalNC", "FloatBorder", "Pmenu", "PmenuSbar", "PmenuThumb" }
-	for _, group in ipairs(transparent_groups) do
-		vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
-	end
-end
-apply_terminal_bg()
+-- local function apply_terminal_bg()
+-- 	local transparent_groups =
+-- 		{ "Normal", "NormalFloat", "NormalNC", "FloatBorder", "Pmenu", "PmenuSbar", "PmenuThumb" }
+-- 	for _, group in ipairs(transparent_groups) do
+-- 		vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
+-- 	end
+-- end
+-- apply_terminal_bg()
 -- uncomment below if you want this setting every time a colorscheme is loaded
 -- vim.api.nvim_create_autocmd("ColorScheme", { pattern = "*", callback = apply_terminal_bg })
 
 -- enable syntax highlighting within the language blocks
 vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "cpp", "c" }
+
+-- pyrefly is sending a lot of INFO messages to stderr
+-- comment this line out if trying to debug an lsp issue
+vim.lsp.set_log_level("WARN")

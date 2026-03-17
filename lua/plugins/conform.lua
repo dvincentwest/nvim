@@ -9,6 +9,7 @@ return {
                 lua = { "stylua" },
                 python = { "ruff_format" },
                 cpp = { "clang-format" },
+                markdown = { "prettier" },
             },
         })
 
