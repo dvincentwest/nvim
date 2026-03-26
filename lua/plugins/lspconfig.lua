@@ -40,6 +40,7 @@ end
 
 return {
 	"neovim/nvim-lspconfig",
+	version = "*",
 	config = function()
 		-- C++
 		vim.lsp.config("clangd", { on_attach = on_attach })
