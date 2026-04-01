@@ -7,6 +7,7 @@ return {
         require("nvim-treesitter.configs").setup({
           -- Parsers you want installed
           ensure_installed = {
+            "bash",
             "c",
             "cpp",
             "lua",
