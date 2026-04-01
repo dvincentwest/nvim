@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		-- these remove the behavior that comments are automatically continued on
 		-- the next line when inserting a newline either from insert or normal modes
 		vim.opt.formatoptions:remove({ "t", "o", "r", "c" })
-		vim.bo.indentexpr = "v:lua.vim.treesitter.indentexpr()"
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 	end,
 })
 
