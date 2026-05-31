@@ -6,11 +6,17 @@ return {
 
         conform.setup({
             formatters_by_ft = {
-                -- Conform will run multiple formatters sequentially
                 lua = { "stylua" },
                 python = { "ruff_format" },
                 cpp = { "clang-format" },
                 markdown = { "prettier" },
+                json = { "jmatte" },
+            },
+            formatters = {
+                jmatte = {
+                    command = "jmatte",
+                    stdin = true,
+                },
             },
         })
 

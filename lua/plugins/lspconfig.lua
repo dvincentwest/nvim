@@ -37,7 +37,6 @@ local on_attach = function(client, bufnr)
 	-- end, opts)
 end
 
-
 return {
 	"neovim/nvim-lspconfig",
 	version = "*",
@@ -62,26 +61,33 @@ return {
 		vim.lsp.enable("lua_ls")
 
 		-- Python
-		vim.lsp.config("pyrefly", { on_attach = on_attach })
-		vim.lsp.enable("pyrefly")
 
-		-- ty
-		-- vim.lsp.config("ty", { on_attach = on_attach })
-		-- vim.lsp.enable("ty")
+		-- local python_lsp = "pyrefly"
+		-- local python_lsp = "ty"
+		local python_lsp = "pyright"
+
+		if python_lsp == "pyrefly" then
+			vim.lsp.config("pyrefly", { on_attach = on_attach })
+			vim.lsp.enable("pyrefly")
+		elseif python_lsp == "ty" then
+			vim.lsp.config("ty", { on_attach = on_attach })
+			vim.lsp.enable("ty")
+		elseif python_lsp == "pyright" then
+			vim.lsp.config("pyright", {
+				on_attach = on_attach,
+				settings = {
+					python = {
+						analysis = {
+							autoImportCompletions = false,
+							typeCheckingMode = "off",
+						},
+					},
+				},
+			})
+			vim.lsp.enable("pyright")
+		end
 
 		-- Pyright
-		-- vim.lsp.config("pyright", {
-		-- 	on_attach = on_attach,
-		-- 	settings = {
-		-- 		python = {
-		-- 			analysis = {
-		-- 				autoImportCompletions = false,
-		-- 				typeCheckingMode = "off",
-		-- 			},
-		-- 		},
-		-- 	},
-		-- })
-		-- vim.lsp.enable("pyright")
 
 		vim.lsp.config("ruff", {})
 		vim.lsp.enable("ruff")
