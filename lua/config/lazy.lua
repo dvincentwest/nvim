@@ -38,4 +38,6 @@ require("lazy").setup({
         patterns = {},           -- can specify patterns if needed
         fallback = true,         -- fallback to git if local plugin not found
     },
+    -- Disable rocks support
+    rocks = { enabled = false },
 })
