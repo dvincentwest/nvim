@@ -4,6 +4,11 @@
 vim.opt.virtualedit = "block"
 vim.opt.termguicolors = true
 
+-- one line per mouse scroll event. A discrete wheel notch arrives as 3 events
+-- (macOS reports a notch as ~3 lines), so a notch moves 3 lines; a trackpad
+-- tick is 1 event, so it moves 1 line
+vim.opt.mousescroll = "ver:1,hor:6"
+
 -- line/tab behaviors
 vim.opt.number = true
 vim.opt.relativenumber = true
